@@ -80,6 +80,7 @@ public class Astrocat : MonoBehaviour
     private void Update()
     {
         updateSurvivalValues();
+        Debug.Log(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
     }
 
     private void Movement()

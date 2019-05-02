@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2280142597386393684}
   - component: {fileID: 274025392}
   - component: {fileID: 274025393}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: Astrocat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 0a40158af04064d47a117e899387c3f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -409,7 +409,7 @@ MonoBehaviour:
   distance: 0.1
   activeLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 16384
 --- !u!1 &2280142599197850131
 GameObject:
   m_ObjectHideFlags: 0
