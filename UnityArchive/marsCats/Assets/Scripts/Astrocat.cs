@@ -8,6 +8,7 @@ public class Astrocat : MonoBehaviour
     [Header("Movement Variables")]
     //[SerializeField] private float moveSpeed;
     [SerializeField] private float advancementForce;
+    [SerializeField, Tooltip("Angle in which the force vector of the movement is realized")] private float advancementAngle;
     [SerializeField] private float rotationSpeed;
 
     private PhotonView m_PhotonView;
@@ -90,10 +91,16 @@ public class Astrocat : MonoBehaviour
         {
             anim.SetBool("Jump", !isGrounded);
             Vector3 moveVector = transform.forward;
-            moveVector.y += 1;
+            moveVector = new Vector3(moveVector.x * Mathf.Cos(advancementAngle * Mathf.Deg2Rad), Mathf.Sin(advancementAngle * Mathf.Deg2Rad),
+                moveVector.z * Mathf.Cos(advancementAngle * Mathf.Deg2Rad));
             moveVector = moveVector.normalized * advancementForce * SystemControls.Axis.y;
             if (SystemControls.Axis.y < 0) moveVector.y = -moveVector.y;
             rigid.AddForce(moveVector, ForceMode.Impulse);
+            /*Vector3 moveVector = transform.forward;
+            moveVector.y += 1;
+            moveVector = moveVector.normalized * advancementForce * SystemControls.Axis.y;
+            if (SystemControls.Axis.y < 0) moveVector.y = -moveVector.y;
+            rigid.AddForce(moveVector, ForceMode.Impulse);*/
         }
 
         //rotation

@@ -233,7 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516a49e30f0a7724e9a143dab2ef1e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  advancementForce: 80
+  advancementForce: 783.929
+  advancementAngle: 82.27
   rotationSpeed: 60
   maxCharacterHealth: 100
   maxWater: 100
@@ -434,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2280142599197850131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.561, z: 0}
+  m_LocalPosition: {x: 0, y: -0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2280142597386393687}
