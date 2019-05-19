@@ -213,6 +213,8 @@
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\SystemControls.cs" />
     <Compile Include="Assets\Scripts\SystemDetectors.cs" />
+    <Compile Include="Assets\Scripts\terrainContainer.cs" />
+    <Compile Include="Assets\Scripts\terrainGenerator.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\VRSampleScenes\Scripts\Common\SessionData.cs" />
     <Compile Include="Assets\VRSampleScenes\Scripts\Examples\ExampleInteractiveItem.cs" />

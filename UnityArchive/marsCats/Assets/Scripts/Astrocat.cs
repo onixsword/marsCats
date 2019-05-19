@@ -81,7 +81,6 @@ public class Astrocat : MonoBehaviour
     private void Update()
     {
         updateSurvivalValues();
-        Debug.Log(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
     }
 
     private void Movement()
@@ -96,11 +95,6 @@ public class Astrocat : MonoBehaviour
             moveVector = moveVector.normalized * advancementForce * SystemControls.Axis.y;
             if (SystemControls.Axis.y < 0) moveVector.y = -moveVector.y;
             rigid.AddForce(moveVector, ForceMode.Impulse);
-            /*Vector3 moveVector = transform.forward;
-            moveVector.y += 1;
-            moveVector = moveVector.normalized * advancementForce * SystemControls.Axis.y;
-            if (SystemControls.Axis.y < 0) moveVector.y = -moveVector.y;
-            rigid.AddForce(moveVector, ForceMode.Impulse);*/
         }
 
         //rotation
@@ -121,7 +115,6 @@ public class Astrocat : MonoBehaviour
         ActualRadiation += Time.deltaTime / 1000;
         ActualTemperature = 37;
 
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -129,7 +122,6 @@ public class Astrocat : MonoBehaviour
         if (!collision.transform.CompareTag("collidable"))
         {
             //**************************************corregir ecuaciones para ser mas realistas
-            Debug.Log(rigid.velocity.magnitude);
             if (rigid.velocity.magnitude >= maxForceTillDamageSuit) ActualSuitHealth -= rigid.velocity.magnitude - maxForceTillDamageSuit;
             if (rigid.velocity.magnitude >= maxForceTillDamageCharacter) ActualCharacterHealth -= rigid.velocity.magnitude - maxForceTillDamageCharacter; ;
         }
