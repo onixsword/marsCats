@@ -247,6 +247,7 @@ MonoBehaviour:
   maxForceTillDamageCharacter: 3000
   head: {fileID: 2280142599197850130}
   groundDetector: {fileID: 2280142597892428391}
+  beacon: {fileID: 7858048350221445729, guid: dc772606b9d78dc4f8806fb3d0a22e7a, type: 3}
 --- !u!82 &274025392
 AudioSource:
   m_ObjectHideFlags: 0
@@ -405,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75e14020b327974ab3e2b2f6e652633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeDirection: 2
   color: {r: 1, g: 0, b: 0, a: 1}
   direction: {x: 0, y: -1, z: 0}
   distance: 0.1
