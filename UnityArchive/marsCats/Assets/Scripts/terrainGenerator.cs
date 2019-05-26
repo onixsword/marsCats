@@ -28,10 +28,6 @@ public class terrainGenerator : MonoBehaviour
     void Start()
     {
         terrainPositions = new terrainContainer[heightMap.width/(int)terrainSize.x, heightMap.height/(int)terrainSize.y];
-        /*CreateShape(new Vector2(heightMap.width / (int)terrainSize.x / 2, heightMap.height / (int)terrainSize.y / 2));
-        CreateShape(new Vector2(heightMap.width / (int)terrainSize.x / 2 - 1, heightMap.height / (int)terrainSize.y / 2));
-        CreateShape(new Vector2(heightMap.width / (int)terrainSize.x / 2, heightMap.height / (int)terrainSize.y / 2 - 1));
-        CreateShape(new Vector2(heightMap.width / (int)terrainSize.x / 2 - 1, heightMap.height / (int)terrainSize.y / 2 - 1));*/
         for (int z = 0; z < heightMap.height / (int)terrainSize.y; z++)
         {
             for (int x = 0; x < heightMap.width / (int)terrainSize.x; x++)
@@ -94,38 +90,9 @@ public class terrainGenerator : MonoBehaviour
 
         List<NavMeshBuildSource> sources = new List<NavMeshBuildSource>();
         NavMeshBuilder.CollectSources(new Bounds(navMeshPosition, buildSize), navMeshLayer, NavMeshCollectGeometry.RenderMeshes, 0, new List<NavMeshBuildMarkup>(), sources);
-        //navData = NavMeshBuilder.BuildNavMeshData(NavMesh.GetSettingsByID(0), sources, new Bounds(navMeshPosition, buildSize), navMeshPosition, Quaternion.identity);
-        //NavMesh.AddNavMeshData(navData);
         navData = NavMeshBuilder.BuildNavMeshData(
-            NavMesh.GetSettingsByID(0),
+            NavMesh.GetSettingsByIndex(1),
             sources,
-            new Bounds(Vector3.zero, new Vector3(10000, 10000, 10000)),
-            Vector3.down,
-            Quaternion.Euler(Vector3.up));
-        
-        navMeshDataInstance = NavMesh.AddNavMeshData(navData);
-    }
-
-
-    private void BuildNavMesh(Transform xform)
-    {
-
-        // delete the existing navmesh if there is one
-        navMeshDataInstance.Remove();
-
-        List<NavMeshBuildSource> buildSources = new List<NavMeshBuildSource>();
-
-        NavMeshBuilder.CollectSources(
-            xform,
-            navMeshLayer,
-            NavMeshCollectGeometry.RenderMeshes,
-            0,
-            new List<NavMeshBuildMarkup>(),
-            buildSources);
-
-        NavMeshData navData = NavMeshBuilder.BuildNavMeshData(
-            NavMesh.GetSettingsByID(0),
-            buildSources,
             new Bounds(Vector3.zero, new Vector3(10000, 10000, 10000)),
             Vector3.down,
             Quaternion.Euler(Vector3.up));
@@ -135,15 +102,5 @@ public class terrainGenerator : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        /*if (vertice == null)
-            return;
-
-        for(int i = 0; i < vertice.Length; i++)
-        {
-            Gizmos.DrawSphere(vertice[i], 0.1f);
-        }*/
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(new Vector3(0f, -maxHeight, 0f), new Vector3(heightMap.width, maxHeight*2, heightMap.height));
     }
 }

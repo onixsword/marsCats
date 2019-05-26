@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core.SystemControls;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(AudioSource))]
+
 public class Astrocat : MonoBehaviour
 {
     [Header("Movement Variables")]
@@ -16,6 +21,7 @@ public class Astrocat : MonoBehaviour
 
     private Rigidbody rigid;
     private Animator anim;
+    private SystemDetectors targetDetector;
 
     [Header("Survival Variables")]
     [SerializeField, Tooltip("Max Health of the character. If health reach 0, character dies")] private float maxCharacterHealth = 100;
@@ -46,6 +52,9 @@ public class Astrocat : MonoBehaviour
     [SerializeField] private Transform head;
     [SerializeField] private SystemDetectors groundDetector;
 
+    [Header("Resources")]
+    [SerializeField] private GameObject beacon;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -56,6 +65,7 @@ public class Astrocat : MonoBehaviour
         {
             Camera.main.transform.parent = head.transform;
             Camera.main.transform.position = head.position;
+            targetDetector = Camera.main.transform.GetComponent<SystemDetectors>();
         }
 
         rigid.maxAngularVelocity = 0;
@@ -68,6 +78,8 @@ public class Astrocat : MonoBehaviour
         ActualRadiation = 0;
         ActualTemperature = 37;
         ActualSuitHealth = maxSuitHealth;
+
+        gameManager.instance.Player = transform;
     }
 
     private void FixedUpdate()
@@ -81,6 +93,7 @@ public class Astrocat : MonoBehaviour
     private void Update()
     {
         updateSurvivalValues();
+        if (Input.GetButtonDown("Fire1")) placeItem();
     }
 
     private void Movement()
@@ -97,8 +110,6 @@ public class Astrocat : MonoBehaviour
             rigid.AddForce(moveVector, ForceMode.Impulse);
         }
 
-        //rotation
-        //rigid.angularVelocity = 0;
         anim.SetBool("Rotating", SystemControls.Axis.x != 0);
         transform.Rotate(transform.up * SystemControls.Axis.x * Time.deltaTime * rotationSpeed);
 
@@ -115,6 +126,21 @@ public class Astrocat : MonoBehaviour
         ActualRadiation += Time.deltaTime / 1000;
         ActualTemperature = 37;
 
+    }
+
+    private void placeItem()
+    {
+        if (targetDetector.isDetecting())
+        {
+            foreach (Machine searcher in gameManager.instance.NPCs)
+            {
+                if (searcher.name == "driller")
+                {
+                    searcher.callMachine(GameObject.Instantiate(beacon, targetDetector.whereHit(), Quaternion.identity));
+                    break;
+                }
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
