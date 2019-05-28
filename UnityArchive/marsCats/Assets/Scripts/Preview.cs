@@ -73,6 +73,7 @@ public class Preview : MonoBehaviour
             GameObject.Destroy(center.gameObject);
             col.isTrigger = false;
             mat.color = Color.white;
+            gameObject.layer = 16;
 
             //call constructor
             foreach (Machine searcher in gameManager.instance.NPCs)

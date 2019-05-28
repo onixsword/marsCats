@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 3303901171374132602}
   - component: {fileID: 3303901171374132601}
   - component: {fileID: 3303901171374132600}
-  m_Layer: 16
+  m_Layer: 17
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,6 +317,7 @@ MonoBehaviour:
   allowedItemsToConstructOver:
     serializedVersion: 2
     m_Bits: 16384
+  beacon: {fileID: 7858048350221445729, guid: dc772606b9d78dc4f8806fb3d0a22e7a, type: 3}
 --- !u!1 &3303901172180204060
 GameObject:
   m_ObjectHideFlags: 0
