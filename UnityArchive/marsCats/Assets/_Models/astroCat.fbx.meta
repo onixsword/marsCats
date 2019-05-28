@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: a35bb746d935d414e8eb066329b0d864
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Boquita
+    100004: Brazo_Der
+    100006: Brazo_Izq
+    100008: Cabezuki
+    100010: Casco
+    100012: Casco 1
+    100014: Cola
+    100016: Cosita_Sombrero
+    100018: Cuerpo
+    100020: Gatito_High
+    100022: Gema
+    100024: Ojos
+    100026: pCube1
+    100028: pCube2
+    100030: Pelitous
+    100032: Pelitous 1
+    100034: Pelitous1
+    100036: Pelitous2
+    100038: Pelitous3
+    100040: Pierna_Der
+    100042: Pierna_Izq
+    100044: Sombrero_Base
+    100046: Ventana
+    400000: //RootNode
+    400002: Boquita
+    400004: Brazo_Der
+    400006: Brazo_Izq
+    400008: Cabezuki
+    400010: Casco
+    400012: Casco 1
+    400014: Cola
+    400016: Cosita_Sombrero
+    400018: Cuerpo
+    400020: Gatito_High
+    400022: Gema
+    400024: Ojos
+    400026: pCube1
+    400028: pCube2
+    400030: Pelitous
+    400032: Pelitous 1
+    400034: Pelitous1
+    400036: Pelitous2
+    400038: Pelitous3
+    400040: Pierna_Der
+    400042: Pierna_Izq
+    400044: Sombrero_Base
+    400046: Ventana
+    2100000: unwrapChekcerShader
+    2100002: Sombrero
+    2100004: GemaTextura
+    2100006: Mechita
+    2100008: GatoDetalle
+    2300000: Boquita
+    2300002: Brazo_Der
+    2300004: Brazo_Izq
+    2300006: Cabezuki
+    2300008: Casco 1
+    2300010: Cola
+    2300012: Cosita_Sombrero
+    2300014: Cuerpo
+    2300016: Gema
+    2300018: pCube1
+    2300020: pCube2
+    2300022: Pelitous 1
+    2300024: Pelitous1
+    2300026: Pelitous2
+    2300028: Pelitous3
+    2300030: Pierna_Der
+    2300032: Pierna_Izq
+    2300034: Sombrero_Base
+    2300036: Ventana
+    3300000: Boquita
+    3300002: Brazo_Der
+    3300004: Brazo_Izq
+    3300006: Cabezuki
+    3300008: Casco 1
+    3300010: Cola
+    3300012: Cosita_Sombrero
+    3300014: Cuerpo
+    3300016: Gema
+    3300018: pCube1
+    3300020: pCube2
+    3300022: Pelitous 1
+    3300024: Pelitous1
+    3300026: Pelitous2
+    3300028: Pelitous3
+    3300030: Pierna_Der
+    3300032: Pierna_Izq
+    3300034: Sombrero_Base
+    3300036: Ventana
+    4300000: Casco
+    4300002: Ventana
+    4300004: Cabezuki
+    4300006: Cuerpo
+    4300008: Cola
+    4300010: Sombrero_Base
+    4300012: Gema
+    4300014: Cosita_Sombrero
+    4300016: Brazo_Izq
+    4300018: Pierna_Izq
+    4300020: Pierna_Der
+    4300022: Brazo_Der
+    4300024: Pelitous
+    4300026: Pelitous1
+    4300028: Pelitous2
+    4300030: Pelitous3
+    4300032: pCube1
+    4300034: pCube2
+    4300036: Boquita
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sombrero
+    second: {fileID: 2100000, guid: b3e6d930006ea2e449b681e674e2ddc8, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
