@@ -11,9 +11,13 @@ using UnityEngine.AI;
 public abstract class NPC : MonoBehaviour
 {
     protected NavMeshAgent navAgent;
+    protected Animator anim;
+    protected AudioSource aud;
 
     private void Awake()
     {
+        aud = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
     }
 

@@ -387,7 +387,67 @@ ModelImporter:
     13700026: Pierna_Der 1
     13700028: Pierna_Izq 1
     13700030: Ventana 1
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BodyTexture
+    second: {fileID: 2100000, guid: 2ac230d707fec5249acb9c5ecadab268, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BotSombrero
+    second: {fileID: 2100000, guid: c9ea4d71243335447af743372b38169b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BrazosPiernasTexture
+    second: {fileID: 2100000, guid: ddf17510c10f0fe41a98991242e29fb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CascoTexture
+    second: {fileID: 2100000, guid: c9ea4d71243335447af743372b38169b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColaTexture
+    second: {fileID: 2100000, guid: 713a10330da7e1e4692abd2aa578d31d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Default_Material
+    second: {fileID: 2100000, guid: ddf17510c10f0fe41a98991242e29fb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Extras
+    second: {fileID: 2100000, guid: ddf17510c10f0fe41a98991242e29fb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gema1
+    second: {fileID: 2100000, guid: ddf17510c10f0fe41a98991242e29fb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PielGatoGeneral
+    second: {fileID: 2100000, guid: ddf17510c10f0fe41a98991242e29fb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PlumaAmarilla
+    second: {fileID: 2100000, guid: ddf17510c10f0fe41a98991242e29fb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopSombrero
+    second: {fileID: 2100000, guid: c9ea4d71243335447af743372b38169b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: VisorTexture
+    second: {fileID: 2100000, guid: adc126b60730cee45808c6eab584f3e6, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -439,7 +499,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.19999999
+    previousCalculatedGlobalScale: 0.25
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60

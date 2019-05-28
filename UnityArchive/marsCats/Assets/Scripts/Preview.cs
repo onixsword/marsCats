@@ -19,6 +19,8 @@ public class Preview : MonoBehaviour
 
     private Collider col;
     private Material mat;
+    private Renderer rend;
+    private Transform constructor;
     private int nonAllowedItemsInTrigger;
 
     // Start is called before the first frame update
@@ -26,7 +28,8 @@ public class Preview : MonoBehaviour
     {
         col = GetComponent<Collider>();
         col.isTrigger = true;
-        mat = GetComponent<Renderer>().material;
+        rend = GetComponent<Renderer>();
+        mat = rend.material;
         mat.color = Color.blue;
     }
 
@@ -61,6 +64,23 @@ public class Preview : MonoBehaviour
         }
     }
 
+    public IEnumerator buildEdification(float timeToBuild)
+    {
+        foreach (Machine searcher in gameManager.instance.NPCs)
+        {
+            if (searcher.name == "constructor")
+            {
+                searcher.callMachine(GameObject.Instantiate(beacon, transform.position, Quaternion.identity));
+                constructor = searcher.transform;
+                break;
+            }
+        }
+        rend.enabled = false;
+        yield return new WaitUntil(() => Vector3.Distance(transform.position, constructor.position) <= Vector3.Distance(center.transform.position, north.transform.position) + 8);
+        yield return new WaitForSeconds(timeToBuild);
+        Destroy(this);
+    }
+
     private void OnDestroy()
     {
         if (isAbleToConstruct)
@@ -71,19 +91,11 @@ public class Preview : MonoBehaviour
             GameObject.Destroy(east.gameObject);
             GameObject.Destroy(west.gameObject);
             GameObject.Destroy(center.gameObject);
+            rend.enabled = true;
             col.isTrigger = false;
             mat.color = Color.white;
             gameObject.layer = 16;
-
-            //call constructor
-            foreach (Machine searcher in gameManager.instance.NPCs)
-            {
-                if (searcher.name == "constructor")
-                {
-                    searcher.callMachine(GameObject.Instantiate(beacon, transform.position, Quaternion.identity));
-                    break;
-                }
-            }
+            
         }
         else
         {

@@ -19,6 +19,7 @@ public class Astrocat : MonoBehaviour
     private PhotonView m_PhotonView;
     private PhotonTransformView m_TransformView;
 
+    private AudioSource aud;
     private Rigidbody rigid;
     private Animator anim;
     private SystemDetectors targetDetector;
@@ -59,8 +60,19 @@ public class Astrocat : MonoBehaviour
     [Header("Animation Values")]
     private bool pasoIzquierdo = false;
 
+    [Header("Audios")]
+    [SerializeField] private AudioClip step;
+    [SerializeField] private AudioClip zip;
+    [SerializeField] private AudioClip gulp;
+    [SerializeField] private AudioClip meow;
+    [SerializeField] private AudioClip dead;
+    [SerializeField] private AudioClip openSound;
+
     private void Start()
     {
+        gameManager.instance.Player = transform;
+
+        aud = GetComponent<AudioSource>();
         rigid = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         m_PhotonView = GetComponent<PhotonView>();
@@ -116,6 +128,7 @@ public class Astrocat : MonoBehaviour
             rigid.AddForce(moveVector, ForceMode.Impulse);
 
             StartCoroutine(changeFeet());
+            aud.PlayOneShot(step);
         }
 
         transform.Rotate(transform.up * SystemControls.Axis.x * Time.deltaTime * rotationSpeed);
@@ -128,10 +141,10 @@ public class Astrocat : MonoBehaviour
     private void updateSurvivalValues()
     {
         ActualCharacterHealth += Time.deltaTime / 100;
-        ActualOxigen -= spacesuitIsBroken ? Time.deltaTime * 10 : Time.deltaTime / 100;
-        ActualWater -= Time.deltaTime / 100;
-        ActualFood -= Time.deltaTime / 100;
-        ActualRadiation += Time.deltaTime / 1000;
+        ActualOxigen -= spacesuitIsBroken ? Time.deltaTime * 333.333333333f : Time.deltaTime * 0.34285714285f;
+        ActualWater -= Time.deltaTime / 60 / 24;
+        ActualFood -= Time.deltaTime / 60 / 24 / 10;
+        ActualRadiation += Time.deltaTime * 0.02833333333f;
         ActualTemperature = 37;
 
     }
@@ -144,7 +157,8 @@ public class Astrocat : MonoBehaviour
             {
                 if (searcher.name == "driller")
                 {
-                    searcher.callMachine(GameObject.Instantiate(beacon, targetDetector.whereHit(), Quaternion.identity));
+                    //searcher.callMachine(GameObject.Instantiate(beacon, targetDetector.whereHit(), Quaternion.identity));
+                    searcher.callMachine(PhotonNetwork.Instantiate("beacon", targetDetector.whereHit(), Quaternion.identity, 0));
                     break;
                 }
             }
@@ -154,7 +168,7 @@ public class Astrocat : MonoBehaviour
 
     private void selectConstruction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Fire2"))
             StartCoroutine(
                 displayEdification(
                     GameObject.Instantiate(
@@ -185,25 +199,28 @@ public class Astrocat : MonoBehaviour
 
     private IEnumerator displayEdification(Transform item)
     {
-        while (Input.GetKey(KeyCode.E))
+        while (Input.GetButton("Fire2"))
         {
             yield return new WaitForFixedUpdate();
             item.position = targetDetector.whereHit();
         }
         anim.SetTrigger("place");
-        Destroy(item.GetComponent<Preview>());
+        float timeToBuild = 2;
+        StartCoroutine(item.GetComponent<Preview>().buildEdification(timeToBuild));
     }
 
     private void drink(float cuantityDrinked)
     {
         ActualWater += cuantityDrinked;
         anim.SetTrigger("drink");
+        aud.PlayOneShot(zip);
     }
 
     private void Eat(float cuantityEaten)
     {
         ActualFood += cuantityEaten;
         anim.SetTrigger("eat");
+        aud.PlayOneShot(gulp);
     }
 
     private void openCloseDoor()
@@ -215,6 +232,7 @@ public class Astrocat : MonoBehaviour
             {
                 interactingDoor.IsOpened = !interactingDoor.IsOpened;
                 anim.SetTrigger("open");
+                aud.PlayOneShot(openSound);
             }
             
         }
@@ -343,8 +361,20 @@ public class Astrocat : MonoBehaviour
         }
     }
 
+    public float MaxCharacterHealth { get => maxCharacterHealth; set => maxCharacterHealth = value; }
+    public float MaxWater { get => maxWater; set => maxWater = value; }
+    public float MaxFood { get => maxFood; set => maxFood = value; }
+    public float MaxOxigen { get => maxOxigen; set => maxOxigen = value; }
+    public Vector2 TemperatureRange { get => temperatureRange; set => temperatureRange = value; }
+    public float MaxRadiationResistance { get => maxRadiationResistance; set => maxRadiationResistance = value; }
+    public float MaxSuitHealth { get => maxSuitHealth; set => maxSuitHealth = value; }
+    public float MaxForceTillDamageSuit { get => maxForceTillDamageSuit; set => maxForceTillDamageSuit = value; }
+    public float MaxForceTillDamageCharacter { get => maxForceTillDamageCharacter; set => maxForceTillDamageCharacter = value; }
+    public bool SpacesuitIsBroken { get => spacesuitIsBroken; set => spacesuitIsBroken = value; }
+
     private void die()
     {
         anim.SetTrigger("death");
+        aud.PlayOneShot(dead);
     }
 }
