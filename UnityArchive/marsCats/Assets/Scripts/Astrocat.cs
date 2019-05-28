@@ -171,10 +171,11 @@ public class Astrocat : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
             StartCoroutine(
                 displayEdification(
-                    GameObject.Instantiate(
-                        edification, 
+                        PhotonNetwork.Instantiate(
+                        "Capsule", 
                         targetDetector.whereHit(), 
-                        Quaternion.identity)
+                        Quaternion.identity,
+                        0)
                     .transform
                 )
             );
