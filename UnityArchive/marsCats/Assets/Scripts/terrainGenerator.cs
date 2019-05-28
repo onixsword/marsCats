@@ -89,13 +89,24 @@ public class terrainGenerator : MonoBehaviour
         navMeshDataInstance.Remove();
 
         List<NavMeshBuildSource> sources = new List<NavMeshBuildSource>();
-        NavMeshBuilder.CollectSources(new Bounds(navMeshPosition, buildSize), navMeshLayer, NavMeshCollectGeometry.RenderMeshes, 0, new List<NavMeshBuildMarkup>(), sources);
+        NavMeshBuilder.CollectSources(
+            new Bounds(
+                navMeshPosition, buildSize
+            ), 
+            navMeshLayer, 
+            NavMeshCollectGeometry.RenderMeshes, 
+            0, 
+            new List<NavMeshBuildMarkup>(), 
+            sources
+        );
+
         navData = NavMeshBuilder.BuildNavMeshData(
             NavMesh.GetSettingsByIndex(1),
             sources,
             new Bounds(Vector3.zero, new Vector3(10000, 10000, 10000)),
             Vector3.down,
-            Quaternion.Euler(Vector3.up));
+            Quaternion.Euler(Vector3.up)
+        );
 
         navMeshDataInstance = NavMesh.AddNavMeshData(navData);
     }

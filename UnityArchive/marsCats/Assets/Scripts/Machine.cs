@@ -5,12 +5,11 @@ using UnityEngine;
 public class Machine : NPC
 {
     private bool haveBeacon = false;
-    [SerializeField] private float distanceToEraseBeacon;
     private GameObject beacon;
 
     private void Update()
     {
-        if (navAgent.remainingDistance < distanceToEraseBeacon)
+        if (navAgent.remainingDistance < navAgent.stoppingDistance + 0.1f)
         {
             GameObject.Destroy(beacon);
         }
