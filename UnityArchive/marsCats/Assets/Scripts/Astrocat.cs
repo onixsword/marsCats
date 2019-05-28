@@ -54,6 +54,10 @@ public class Astrocat : MonoBehaviour
 
     [Header("Resources")]
     [SerializeField] private GameObject beacon;
+    [SerializeField] private GameObject edification;
+
+    [Header("Animation Values")]
+    private bool pasoIzquierdo = false;
 
     private void Start()
     {
@@ -79,6 +83,8 @@ public class Astrocat : MonoBehaviour
         ActualTemperature = 37;
         ActualSuitHealth = maxSuitHealth;
 
+        pasoIzquierdo = false;
+
         gameManager.instance.Player = transform;
     }
 
@@ -94,6 +100,7 @@ public class Astrocat : MonoBehaviour
     {
         updateSurvivalValues();
         if (Input.GetButtonDown("Fire1")) placeItem();
+        selectConstruction();
     }
 
     private void Movement()
@@ -101,20 +108,21 @@ public class Astrocat : MonoBehaviour
         //displacement
         if (SystemControls.Axis.y != 0 && isGrounded)
         {
-            anim.SetBool("Jump", !isGrounded);
             Vector3 moveVector = transform.forward;
             moveVector = new Vector3(moveVector.x * Mathf.Cos(advancementAngle * Mathf.Deg2Rad), Mathf.Sin(advancementAngle * Mathf.Deg2Rad),
                 moveVector.z * Mathf.Cos(advancementAngle * Mathf.Deg2Rad));
             moveVector = moveVector.normalized * advancementForce * SystemControls.Axis.y;
             if (SystemControls.Axis.y < 0) moveVector.y = -moveVector.y;
             rigid.AddForce(moveVector, ForceMode.Impulse);
+
+            StartCoroutine(changeFeet());
         }
 
-        anim.SetBool("Rotating", SystemControls.Axis.x != 0);
         transform.Rotate(transform.up * SystemControls.Axis.x * Time.deltaTime * rotationSpeed);
 
-        anim.SetFloat("forwardSpeed", rigid.velocity.z);
-        anim.SetFloat("upSpeed", rigid.velocity.y);
+        anim.SetBool("walking", SystemControls.Axis.y != 0);
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetFloat("velocity", rigid.velocity.y);
     }
 
     private void updateSurvivalValues()
@@ -140,7 +148,22 @@ public class Astrocat : MonoBehaviour
                     break;
                 }
             }
+            anim.SetTrigger("place");
         }
+    }
+
+    private void selectConstruction()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+            StartCoroutine(
+                displayEdification(
+                    GameObject.Instantiate(
+                        edification, 
+                        targetDetector.whereHit(), 
+                        Quaternion.identity)
+                    .transform
+                )
+            );
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -151,6 +174,51 @@ public class Astrocat : MonoBehaviour
             if (rigid.velocity.magnitude >= maxForceTillDamageSuit) ActualSuitHealth -= rigid.velocity.magnitude - maxForceTillDamageSuit;
             if (rigid.velocity.magnitude >= maxForceTillDamageCharacter) ActualCharacterHealth -= rigid.velocity.magnitude - maxForceTillDamageCharacter; ;
         }
+    }
+
+    private IEnumerator changeFeet()
+    {
+        anim.SetBool("pasoIzquierdo", pasoIzquierdo);
+        pasoIzquierdo = !pasoIzquierdo;
+        yield return new WaitForSeconds(0.1f);
+    }
+
+    private IEnumerator displayEdification(Transform item)
+    {
+        while (Input.GetKey(KeyCode.E))
+        {
+            yield return new WaitForFixedUpdate();
+            item.position = targetDetector.whereHit();
+        }
+        anim.SetTrigger("place");
+        Destroy(item.GetComponent<Preview>());
+    }
+
+    private void drink(float cuantityDrinked)
+    {
+        ActualWater += cuantityDrinked;
+        anim.SetTrigger("drink");
+    }
+
+    private void Eat(float cuantityEaten)
+    {
+        ActualFood += cuantityEaten;
+        anim.SetTrigger("eat");
+    }
+
+    private void openCloseDoor()
+    {
+        if (targetDetector.isDetecting())
+        {
+            Door interactingDoor = targetDetector.whatDetected().GetComponent<Door>();
+            if (interactingDoor != null)
+            {
+                interactingDoor.IsOpened = !interactingDoor.IsOpened;
+                anim.SetTrigger("open");
+            }
+            
+        }
+        
     }
 
     private bool isGrounded
@@ -277,6 +345,6 @@ public class Astrocat : MonoBehaviour
 
     private void die()
     {
-        throw new System.NotImplementedException("The requested feature is not implemented.");
+        anim.SetTrigger("death");
     }
 }
